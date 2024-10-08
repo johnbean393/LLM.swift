@@ -71,6 +71,8 @@ open class LLM: ObservableObject {
         var modelParams = llama_model_default_params()
 #if targetEnvironment(simulator)
         modelParams.n_gpu_layers = 0
+#else
+        modelParams.n_gpu_layers = 99
 #endif
         let model = llama_load_model_from_file(self.path, modelParams)!
         params = llama_context_default_params()
